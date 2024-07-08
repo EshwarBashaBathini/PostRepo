@@ -12,8 +12,6 @@ const ProtectedRoute = ({ children }) => {
     }
   }, [jwtToken, navigate]);
 
-  
-
   return children;
 };
 
