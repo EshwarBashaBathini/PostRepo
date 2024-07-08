@@ -10,7 +10,7 @@ const ProtectedRoute = ({ children }) => {
     if (!jwtToken) {
       navigate("/login", { replace: true });
     }
-  }, [jwtToken, navigate]);
+  }, [ navigate]);
 
   return children;
 };

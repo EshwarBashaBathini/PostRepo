@@ -43,7 +43,7 @@ const Login = () => {
   useEffect(() => {
     const jwtToken = Cookies.get("jwt_token");
     if (jwtToken !== undefined) {
-      navigate("/");
+      navigate("/", { replace: true });
     }
   }, [navigate]);
 
