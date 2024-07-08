@@ -14,7 +14,7 @@ const PostDisplay = () => {
   const filterData = postList.filter((item) =>
     item.category.includes(categoryId)
   );
-  console.log(filterData);
+  
 
   return (
     <div className="bg-container">
