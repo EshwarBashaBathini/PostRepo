@@ -14,7 +14,7 @@ const PostDisplay = () => {
   const filterData = postList.filter((item) =>
     item.category.includes(categoryId)
   );
-  
+
 
   return (
     <div className="bg-container">
@@ -25,11 +25,13 @@ const PostDisplay = () => {
         ))}
       </ul>
 
+      <Link to="/createpost" className="links">
       <button type="button" className="create-btn">
-        <Link to="/createpost" className="links">
+        
           Create Post
-        </Link>
+        
       </button>
+      </Link>
     </div>
   );
 };
