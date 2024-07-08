@@ -14,12 +14,15 @@ const CreatePost = () => {
   const [errMsg, setErrMsg] = useState("");
   const [count, setCount] = useState(3)
   let interval;
+  let timeId ;
   useEffect(() => {
     return () => {
       if (count === 1) {
         clearInterval(interval);
+        clearTimeout(timeId)
       }
     }
+    
   }, []);
 
   const ontitleChange = (event) => {
@@ -56,11 +59,16 @@ const CreatePost = () => {
         clearInterval(interval)
       }
 
+      timeId = setTimeout(() => {
+        navigate('/')
+      }, 3000);
+
+
       interval = setInterval(() => {
         setCount((prevCount) => {
           if (prevCount === 2) {
             clearInterval(interval);
-            navigate('/')
+            
             return 1
           }
           return prevCount - 1;
