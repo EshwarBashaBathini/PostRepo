@@ -1,6 +1,6 @@
 import "./createpost.css";
 import { Link, useNavigate } from "react-router-dom";
-import {  toast } from 'sonner'
+import { toast } from 'sonner';
 import { v4 as uuidv4 } from "uuid";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { useState, useContext, useEffect } from "react";
@@ -22,13 +22,13 @@ const CreatePost = () => {
         clearTimeout(timeId)
       }
     }
-    
-  }, []);
+  }, [count] )
 
   const ontitleChange = (event) => {
     setTitle(event.target.value)
     setSuccessMsg(false)
   };
+
   const onContentChange = (event) => {
     setContent(event.target.value)
     setSuccessMsg(false)
@@ -37,23 +37,22 @@ const CreatePost = () => {
   const onCreatePost = (event) => {
     event.preventDefault()
     setSuccessMsg(false)
+
     if ((title !== "") && (content !== "")) {
       setSuccessMsg(true)
-      toast.success('Your Post is created Successfully ')
+      setCount(4)
+      toast.success('Your Post is created Successfully')
       const postDetails = {
         id: uuidv4(),
         title,
         content,
         category: "Latest",
-      };
-      setCount(4)
-      if (count === 2) {
-        clearInterval(interval)
       }
 
       timeId = setTimeout(() => {
         navigate('/')
       }, 4000);
+
 
 
       interval = setInterval(() => {
@@ -65,7 +64,8 @@ const CreatePost = () => {
           }
           return prevCount - 1;
         });
-      }, 1000);
+      }, 1000)
+
       AddPostList(postDetails);
       setTitle("");
       setContent("");
@@ -79,6 +79,7 @@ const CreatePost = () => {
       }
     }
   };
+
 
 
   return (
@@ -101,7 +102,7 @@ const CreatePost = () => {
             id="title"
             value={title}
             onChange={ontitleChange}
-            placeholder="Titile.."
+            placeholder ="Title.."
             className="input-title"
           />
           <label htmlFor="content" className="label">

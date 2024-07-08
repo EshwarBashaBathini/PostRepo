@@ -109,6 +109,35 @@
   color: green;
 }
 
+/* createpost.css */
+.toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+}
+
+.toast {
+  padding: 12px;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+.toast.error {
+  background-color: #dc3545;
+}
+
+.toast.success {
+  background-color: #28a745;
+}
+
+.toast.info{
+  background-color: #17a2b8;
+}
+
+
 @media screen and (max-width:768px){
   .form{
     width: 50%;
