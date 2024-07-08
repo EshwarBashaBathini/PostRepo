@@ -12,9 +12,7 @@ const ProtectedRoute = ({ children }) => {
     }
   }, [jwtToken, navigate]);
 
-  if (!jwtToken) {
-    return null;
-  }
+  
 
   return children;
 };
