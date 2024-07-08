@@ -1,5 +1,6 @@
 import "./createpost.css";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import {  toast } from 'sonner'
 import { v4 as uuidv4 } from "uuid";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { useState, useContext, useEffect } from "react";
@@ -11,13 +12,12 @@ const CreatePost = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [successMsg, setSuccessMsg] = useState(false);
-  const [errMsg, setErrMsg] = useState("");
-  const [count, setCount] = useState(3)
+  const [count, setCount] = useState(4)
   let interval;
   let timeId ;
   useEffect(() => {
     return () => {
-      if (count === 1) {
+      if (count === 0) {
         clearInterval(interval);
         clearTimeout(timeId)
       }
@@ -26,42 +26,34 @@ const CreatePost = () => {
   }, []);
 
   const ontitleChange = (event) => {
-    setTitle(event.target.value);
-    setErrMsg("");
-    setSuccessMsg(false);
+    setTitle(event.target.value)
+    setSuccessMsg(false)
   };
   const onContentChange = (event) => {
-    setContent(event.target.value);
-    setErrMsg("");
-    setSuccessMsg(false);
+    setContent(event.target.value)
+    setSuccessMsg(false)
   };
 
   const onCreatePost = (event) => {
-    event.preventDefault();
-    setErrMsg("");
-    setSuccessMsg(false);
-
-
-
-
-
-    if (title !== "" && content !== "") {
-      setSuccessMsg(true);
-      console.log(count)
+    event.preventDefault()
+    setSuccessMsg(false)
+    if ((title !== "") && (content !== "")) {
+      setSuccessMsg(true)
+      toast.success('Your Post is created Successfully ')
       const postDetails = {
         id: uuidv4(),
         title,
         content,
         category: "Latest",
       };
-      setCount(3)
+      setCount(4)
       if (count === 2) {
         clearInterval(interval)
       }
 
       timeId = setTimeout(() => {
         navigate('/')
-      }, 3000);
+      }, 4000);
 
 
       interval = setInterval(() => {
@@ -79,11 +71,11 @@ const CreatePost = () => {
       setContent("");
     } else {
       if (title === "" && content === "") {
-        setErrMsg("Please Enter the Title and Content");
+        toast.error('Please Enter the Title and Content')
       } else if (title !== "" && content === "") {
-        setErrMsg("Please Enter the Content");
+        toast.error('Please Enter the Content')
       } else if (title === "" && content !== "") {
-        setErrMsg("Please Enter the Title");
+        toast.error('Please Enter the Title')
       }
     }
   };
@@ -125,10 +117,10 @@ const CreatePost = () => {
           <button type="submit" className="submit-btn">
             Create Post
           </button>
-          {errMsg !== "" && <p className="err-msg">{errMsg}</p>}
+
           {successMsg  && (
             <p className="succ-msg">
-              {`Your Post is created and Navigated to PostDisplay in ${count} seconds`}
+              {`Redirecting to all posts in ${count} seconds`}
             </p>
           )}
         </form>
