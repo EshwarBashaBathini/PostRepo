@@ -62,7 +62,7 @@ const Login = () => {
           value={username}
           onChange={onUsernameChange}
           className="input-login"
-          placeholder="eshwar"
+          placeholder="eshwar Basha"
         />
         <label htmlFor="password" className="label-login">
           Password
